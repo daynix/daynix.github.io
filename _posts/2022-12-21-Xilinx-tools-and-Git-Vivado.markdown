@@ -7,6 +7,8 @@ author:
   url: "https://github.com/viktor-prutyanov"
 ---
 
+![image](https://user-images.githubusercontent.com/8286747/213515912-e3a199b1-5fd1-4613-a509-29fe5951aadc.png)
+
 In [the previous post](https://daynix.github.io/2022/12/07/Xilinx-tools-and-Git-Vitis-HLS.html) we reviewed in detail how to adapt the Xilinx Vitis HLS project to Git workflow. This article describes how to achieve the same goal with Xilinx Vivado.
 
 ## Simple project with Verilog/VHDL only

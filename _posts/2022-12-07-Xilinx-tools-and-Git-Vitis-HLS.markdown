@@ -7,6 +7,8 @@ author:
   url: "https://github.com/viktor-prutyanov"
 ---
 
+![image](https://user-images.githubusercontent.com/8286747/213515302-1b6afca9-091d-4261-9a2f-4c89b04d4940.png)
+
 Sometimes while working with Xilinx tools the question arises how to save your results or share them with your team for collaborative work. In the modern world, Git repositories are usually used to exchange source code. But working with them can be difficult when Xilinx tools are used. This article is dedicated to adopting Xilinx Vitis HLS to Git workflow. Also, along the way, we'll touch on build automation of Vitis HLS IP cores.
 
 This is an example of a clean Vitis HLS project with 2 solutions before any build:
