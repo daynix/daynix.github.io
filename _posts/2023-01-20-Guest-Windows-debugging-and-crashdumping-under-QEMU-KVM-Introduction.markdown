@@ -70,7 +70,7 @@ The execution of the target machine will be interrupted and we will be able to e
 
 ![image](https://user-images.githubusercontent.com/8286747/213818025-12eceea8-140e-4598-8d53-1083a668df3a.png)
 
-## Dump on BSoD
+## Memory dump on BSoD
 
 In case of a kernel-mode error Windows can automatically save a dump on the disk. Specific behavior can be controlled in the "Startup and Recovery" menu:
 
@@ -85,6 +85,16 @@ After that, if the crash dump were successfully retrieved from the disk, it can 
 ![image](https://user-images.githubusercontent.com/8286747/213818082-47f877d7-842a-485a-a449-b2105b8c9763.png)
 
 The screenshot from WinDbg shows that Windows saved `BugcheckCode` (`0xd1`) and `BugcheckParameters` to help us understand what the problem is.
+
+## Memory dump from LiveKD
+
+LiveKD from Sysinternals Suite can create _Complete Memory Dump_ from a live system:
+
+![image](https://user-images.githubusercontent.com/8286747/214035925-43874d48-b5ed-4dda-a472-a84fd138c8ee.png)
+
+Such a dump can be opened in WinDbg as a crash dump:
+
+![image](https://user-images.githubusercontent.com/8286747/214035506-db3c325c-714b-4886-ac9f-17150869b96d.png)
 
 ## Limitations
 
