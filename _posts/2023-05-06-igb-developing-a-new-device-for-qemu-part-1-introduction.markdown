@@ -9,16 +9,16 @@ author:
 
 _[QEMU](https://www.qemu.org/)_ is a machine emulator and virtualizer; it
 emulates or virtualizes various devices which consist in a machine. Such
-emulated/virtualized devices include but are not limited to: CPU, memory,
+emulated/virtualized devices include but are not limited to CPU, memory,
 storage, bus, serial console, and network interface. QEMU is under active
 development, and there is always demand for new device implementations. However,
 the journey of new device implementation is complex and not always smooth.
 
-This is a series of four posts, and presents challenges and their resolutions
+This is a series of four posts and presents challenges and their resolutions
 by describing the process of the development of _igb_, a device implementation
 we recently contributed to the project. While igb emulates a
 _PCI Express (PCIe)_ network interface card (NIC) and this series will
-illustrate some aspect of PCIe and NIC, many part of it should be generally
+illustrate some aspects of PCIe and NIC, many parts of it should be generally
 applicable for new device emulator development.
 
 \* By the way, for igb development, I used a
@@ -27,13 +27,13 @@ _Apple Silicon_ and runs _[Asahi Linux](https://asahilinux.org/)_, a community
 port of Linux for this system. While there are some pitfalls, it has decent KVM
 support and provides a nice environment for QEMU development.
 
-# QEMU device emulator development in nutshell
+# QEMU device emulator development in a nutshell
 
 Briefly speaking, developing a new QEMU device emulator involves the following
 steps:
 
 1. Writing a boilerplate and adding basic features
-2. Adding qtest
+2. Adding QTest
 3. Adding advanced features and libvirt support
 4. Running more tests and increasing feature coverage
 5. Debugging
@@ -54,13 +54,13 @@ libvirt.
 
 During the development, tests will reveal regressions or features which are
 missing but necessary for a workload. It is often unclear what is making tests
-failing and a significant debugging effort will be required.
+fail and a significant debugging effort will be required.
 
 Finally, the code will be sent upstream. By upstreaming, you can ensure that the
-code will be updated as the other parts of the code base changes, and others can
+code will be updated as the other parts of the code base change, and others can
 appreciate the contributed code.
 
-This series details each step and provides an insight on how a device emulator
+This series details each step and provides insight into how a device emulator
 can be developed.
 
 This next post will describe steps 1 and 2. The third post will describe steps 3
@@ -68,7 +68,7 @@ and 4. The last post will be about steps 5 and 6.
 
 # What is igb?
 
-Before describing the device development process in depth, first let me
+Before describing the device development process in depth, first, let me
 introduce the hardware which will be emulated by igb.
 
 igb is actually the name of a family of Intel's NIC. In particular, QEMU's igb
@@ -77,7 +77,7 @@ implementation emulates
 launched in 2008.
 
 QEMU already has emulation code for several Intel NICs. The following device
-implementations are present in current QEMU (from oldest hardware to newest one):
+implementations are present in the current QEMU (from oldest hardware to newest one):
 - i82596
 - eepro100 for 8255x
 - e1000 for 8254x
@@ -87,12 +87,12 @@ igb succeeds _e1000e_ in Intel's product line. As the name suggests, e1000 and
 newer devices have gigabit bandwidth.
 
 While paravirtualization is common these days, igb emulates actual hardware.
-In most cases, paravirtualized device is superior to emulated hardware, but
+In most cases, a para-virtualized device is superior to emulated hardware, but
 there are a few advantages emulated hardware has:
 - Widely available driver. In particular, Windows bundles the driver for igb and
   works with it out-of-box.
 - Feature-richness. Particularly features which make little sense for software
-  implementation may be absent in a paravirtualized device, but having such
+  implementation may be absent in a para-virtualized device, but having such
   features emulated may be required for testing purposes.
 
 The latter is the major motivation for introducing igb. igb has so many features
@@ -120,9 +120,9 @@ use of multiple processors as in e1000e, but igb also allows to use the queues
 for efficient isolation of virtual machines. This isolation is achieved by
 hardware-level L2 switching.
 
-In a conventional system, the hypervisor emulates a NIC for each VMs, and
-performs L2 switching at software-level to route packets to the appropriate VM.
-For example, the diagram below illustrates the case when VMs are receiving
+In a conventional system, the hypervisor emulates a NIC for each VMs and
+performs L2 switching at the software level to route packets to the appropriate
+VM. For example, the diagram below illustrates the case when VMs are receiving
 packets from an external host:
 
 {% comment %}
@@ -154,10 +154,10 @@ flowchart BT
 
 In this diagram, packets are first stored in queues determined with RSS. The
 hypervisor acquires these stored packets and performs L2 switching to route them
-to appropriate VMs. This switching imposes substantial load to the host.
+to appropriate VMs. This switching imposes a substantial load on the host.
 
-With VMDq enabled, igb automatically performs this switching, and assigns
-packets to different queues accordingly, reducing the load of the host:
+With VMDq enabled, igb automatically performs this switching and assigns packets
+to different queues accordingly, reducing the load of the host:
 
 {% comment %}
 ~~~ mermaid
@@ -199,8 +199,8 @@ VMDq is more effective when combined with igb's _SR-IOV_ feature. SR-IOV is
 an extension of PCIe to allow a device to export several _virtual functions_
 which looks like different devices for the operating system. Virtual functions
 can be directly assigned to VMs (by using
-[VFIO](https://docs.kernel.org/driver-api/vfio.html) in case of Linux), which
-removes the hypervisor from the traffic path between the VM and hardware:
+[VFIO](https://docs.kernel.org/driver-api/vfio.html) in the case of Linux),
+which removes the hypervisor from the traffic path between the VM and hardware:
 
 {% comment %}
 ~~~ mermaid
@@ -227,7 +227,7 @@ flowchart BT
 {% include 2023-05-06-igb-developing-a-new-device-for-qemu-part-1-introduction/sriov.svg %}
 
 The context switch between the hypervisor and VM incurs significant overhead so
-bypassing the hypervisor can result in great performance gain.
+bypassing the hypervisor can result in a great performance gain.
 
 # Summary
 
@@ -235,5 +235,5 @@ This article introduced QEMU device emulator development in general and igb,
 QEMU's new NIC emulation. The next post will discuss the first step of a new
 device emulator development: writing a boilerplate and adding basic features.
 The goal of this step is to get the emulated device to work (even though the
-functionality may be limited) and to create the foundation of the further
+functionality may be limited) and to create the foundation for further
 development.
