@@ -232,8 +232,9 @@ bypassing the hypervisor can result in a great performance gain.
 # Summary
 
 This article introduced QEMU device emulator development in general and igb,
-QEMU's new NIC emulation. The next post will discuss the first step of a new
-device emulator development: writing a boilerplate and adding basic features.
-The goal of this step is to get the emulated device to work (even though the
-functionality may be limited) and to create the foundation for further
-development.
+QEMU's new NIC emulation.
+[The next](/2023/05/12/igb-developing-a-new-device-for-qemu-part-2-implementing-basic-features.html)
+post will discuss the first step of a new device emulator development: writing a
+boilerplate and adding basic features. The goal of this step is to get the
+emulated device to work (even though the functionality may be limited) and to
+create the foundation for further development.
