@@ -188,5 +188,6 @@ These are the foundations of the further development. New features will be added
 and more testing will be done in the future, but that cannot be done without
 these essential components.
 
-The next post will discuss implementing advanced features and libvirt support
-to make the device practically _usable_.
+[The next post](/2023/05/21/igb-developing-a-new-device-for-qemu-part-3-implementing-basic-features.html)
+will discuss implementing advanced features and libvirt support to make the
+device practically _usable_.
