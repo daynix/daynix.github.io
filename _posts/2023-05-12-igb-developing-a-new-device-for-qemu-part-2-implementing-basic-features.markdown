@@ -15,7 +15,7 @@ an Intel NIC. This post details the first steps of the development: filling a
 boilerplate and adding basic features necessary to get the device _work_ and to
 establish the foundation of further development.
 
-# Writing a boilerplate and adding basic features
+## Writing a boilerplate and adding basic features
 
 QEMU provides infrastructure common for different devices. The first step of 
 device emulator development is to write a boilerplate to utilize it. Then, you
@@ -154,7 +154,7 @@ step by myself again to understand the difference between igb and e1000e, and
 to backport the recent changes made for e1000e to igb, which was already
 diverged from e1000e.
 
-# Adding QTest
+## Adding QTest
 
 [QTest](https://www.qemu.org/docs/master/devel/qtest.html) is a device emulation
 testing framework and provides low-level access to the emulated device such as
@@ -177,7 +177,7 @@ The process of writing QTest is not so different from writing the device
 emulation itself: copy the existing code, rename identifiers, and tweak it for
 the new device.
 
-# Conclusion
+## Conclusion
 
 With these steps finished, now we have:
 - Buildable code

@@ -27,7 +27,7 @@ _Apple Silicon_ and runs _[Asahi Linux](https://asahilinux.org/)_, a community
 port of Linux for this system. While there are some pitfalls, it has decent KVM
 support and provides a nice environment for QEMU development.
 
-# QEMU device emulator development in a nutshell
+## QEMU device emulator development in a nutshell
 
 Briefly speaking, developing a new QEMU device emulator involves the following
 steps:
@@ -66,7 +66,7 @@ can be developed.
 This next post will describe steps 1 and 2. The third post will describe steps 3
 and 4. The last post will be about steps 5 and 6.
 
-# What is igb?
+## What is igb?
 
 Before describing the device development process in depth, first, let me
 introduce the hardware which will be emulated by igb.
@@ -99,7 +99,7 @@ The latter is the major motivation for introducing igb. igb has so many features
 added since e1000e so the later part of this section lists particularly notable
 features of igb.
 
-## VMDq
+### VMDq
 
 _[VMDq](https://www.intel.com/content/www/us/en/products/docs/network-io/ethernet/network-adapters/io-acceleration-technology-vmdq.html)_
 is a feature to assign _queues_ to different virtual machines. (_nested_ virtual
@@ -193,7 +193,7 @@ e1000e can filter packets by the destination MAC address, and igb extends this
 feature further by allowing the driver to configure different filters for
 queues.
 
-## SR-IOV
+### SR-IOV
 
 VMDq is more effective when combined with igb's _SR-IOV_ feature. SR-IOV is
 an extension of PCIe to allow a device to export several _virtual functions_
@@ -229,7 +229,7 @@ flowchart BT
 The context switch between the hypervisor and VM incurs significant overhead so
 bypassing the hypervisor can result in a great performance gain.
 
-# Summary
+## Summary
 
 This article introduced QEMU device emulator development in general and igb,
 QEMU's new NIC emulation.
