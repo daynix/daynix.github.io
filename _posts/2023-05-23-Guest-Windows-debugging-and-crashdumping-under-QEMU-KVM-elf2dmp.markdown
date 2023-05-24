@@ -7,6 +7,8 @@ author:
   url: "https://github.com/viktor-prutyanov"
 ---
 
+![image](https://github.com/virtio-win/kvm-guest-drivers-windows/assets/8286747/67410fd0-71ec-44e4-85a6-1a58c9ca571d)
+
 In the [previous post](/2023/02/19/Guest-Windows-debugging-and-crashdumping-under-QEMU-KVM-dump-guest-memory-vmcoreinfo-and-virtio-win.html) we discussed capturing a guest Windows crash dump using the vmcoreinfo device, the virtio-win driver called FwCfg, and the QEMU command called `dump-guest-memory -w`. In contrast to that method, this post considers a method to create a Complete Memory Dump of the 64-bit Windows guest, running inside a QEMU/KVM virtual machine, which doesn't require any actions inside the guest. We will discuss the `elf2dmp` tool which can convert QEMU ELF dump obtained with `dump-guest-memory` to WinDbg-readable DMP format.
 
 ## Preparation
