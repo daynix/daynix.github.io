@@ -63,8 +63,12 @@ appreciate the contributed code.
 This series details each step and provides insight into how a device emulator
 can be developed.
 
-This next post will describe steps 1 and 2. The third post will describe steps 3
-and 4. The last post will be about steps 5 and 6.
+[The next post](/2023/05/12/igb-developing-a-new-device-for-qemu-part-2-implementing-basic-features.html)
+will describe steps 1 and 2.
+[The third post](/2023/05/21/igb-developing-a-new-device-for-qemu-part-3-implementing-basic-features.html)
+will describe steps 3 and 4.
+[The last post](/2023/06/01/igb-developing-a-new-device-for-qemu-part-4-debugging-and-submitting-patches.html)
+will be about steps 5 and 6.
 
 ## What is igb?
 

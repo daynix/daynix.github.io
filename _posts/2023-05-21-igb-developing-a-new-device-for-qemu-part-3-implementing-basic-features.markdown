@@ -195,5 +195,6 @@ reviews.
 
 The development process is not always smooth, and you may have difficulty
 getting a new feature to function, or the device implementation may suffer from
-regressions. Therefore the next post will mostly be spent on one thing:
-__debugging__.
+regressions. Therefore
+[the next post](/2023/06/01/igb-developing-a-new-device-for-qemu-part-4-debugging-and-submitting-patches.html)
+will mostly be spent on one thing: __debugging__.
