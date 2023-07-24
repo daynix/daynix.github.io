@@ -27,7 +27,7 @@ github_username: daynix
 domain: daynix.github.io
 
 # Build settings
-theme: minima
+theme: architect
 plugins:
   - jekyll-feed
   - jekyll-sitemap
